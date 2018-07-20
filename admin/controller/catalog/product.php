@@ -502,6 +502,12 @@ class ControllerCatalogProduct extends Controller {
 		} else {
 			$data['error_name'] = array();
 		}
+		
+		if (isset($this->error['alternative_name'])) {
+            $data['alternative_error_name'] = $this->error['alternative_name'];
+        } else {
+            $data['alternative_error_name'] = array();
+        }
 
 		if (isset($this->error['meta_title'])) {
 			$data['error_meta_title'] = $this->error['meta_title'];
@@ -1180,7 +1186,11 @@ class ControllerCatalogProduct extends Controller {
 			if ((utf8_strlen($value['name']) < 1) || (utf8_strlen($value['name']) > 255)) {
 				$this->error['name'][$language_id] = $this->language->get('error_name');
 			}
-
+			
+			if ((utf8_strlen($value['alternative_name']) < 1) || (utf8_strlen($value['alternative_name']) > 255)) {
+                $this->error['alternative_name'][$language_id] = $this->language->get('alternative_error_name');
+            }
+			
 			if ((utf8_strlen($value['meta_title']) < 1) || (utf8_strlen($value['meta_title']) > 255)) {
 				$this->error['meta_title'][$language_id] = $this->language->get('error_meta_title');
 			}
